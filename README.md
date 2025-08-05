@@ -78,6 +78,10 @@ Important Notes:
 - All personal files (including real images, Excel sheets, and face encodings) have been removed for privacy.
 - The file `face_encoding.pkl` has been deleted. If you want to test face recognition, please run your own encoding script to generate this file with new faces.
 - Reminder and memory data are stored in local files (e.g., CSV or DB) that can be reinitialized with test data.
+- Download Face Recognition Models:
+Due to GitHub’s file size limit, the `face_recognition_models` folder is uploaded separately as a ZIP file.
+[Download face_recognition_models.zip from Google Drive](https://drive.google.com/file/d/1rzMxyZ75dkSfHxO1AFWkmOwE9ZZjnWU-/view?usp=sharing)
+After downloading, extract it into the project directory to run the full application.
 
 
 Demo Screenshots:
@@ -127,4 +131,5 @@ Saintgits College of Applied Sciences
 
 
 License:
+
 This project is free to use for academic and non-commercial purposes. Contributions and suggestions are welcome.
