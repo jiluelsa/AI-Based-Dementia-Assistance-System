@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dementia Assistance System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-left: -150px;
+            margin-bottom: 30px;
+        }
+        #video-container {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        #video-feed {
+            width: 640px;
+            height: 480px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #details-box {
+            margin-top: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 500px;
+            z-index: 100;
+            text-align: left;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 50;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .close-btn:hover {
+            background-color: #c0392b;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #chatbot-container {
+            margin-top: 20px;
+            width: 50%;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #chatbox {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            line-height: 1.4;
+        }
+        .memory-message {
+            color: #2980b9;
+            font-style: italic;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-left: 3px solid #2980b9;
+        }
+        .diary-mode {
+            background-color: #fff8dc !important;
+            border: 1px solid #deb887;
+        }
+        .diary-entry {
+            color: #333;
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #fff8dc;
+            border-left: 3px solid #deb887;
+        }
+        #chat-input-container {
+            display: flex;
+            gap: 10px;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .status-online {
+            background-color: #2ecc71;
+        }
+        .status-offline {
+            background-color: #e74c3c;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .main-content {
+            flex: 2;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .sidebar {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 300px;
+        }
+        .video-container {
+            margin-bottom: 20px;
+            width: 40%;  /* Reduce camera width */
+            margin: 0 auto;  /* Center the camera */
+        }
+        #videoElement {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .chat-container {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        #chatMessages {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .user-message {
+            background: #e3f2fd;
+            margin-left: 20px;
+        }
+        .bot-message {
+            background: #f5f5f5;
+            margin-right: 20px;
+        }
+        .input-container {
+            display: flex;
+            gap: 10px;
+        }
+        #userInput {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .reminders-container {
+            margin-top: 20px;
+        }
+        .reminder-item {
+            background: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #2196F3;
+        }
+        .reminder-item.urgent {
+            border-left-color: #f44336;
+        }
+        .reminder-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .reminder-time {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .reminder-description {
+            margin-top: 5px;
+            color: #444;
+        }
+        .add-reminder-form {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 5px;
+            display: none;  /* Hide form by default */
+        }
+        .show-form {
+            display: block !important;  /* Show form when this class is added */
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #notificationArea {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .notification {
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .reminders-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-right: 10px;
+        }
+        .reminders-header h2 {
+            font-size: 1.3em;
+            margin: 0;
+        }
+        .capture-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .capture-section h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        #addReminderBtn, #captureBtn, #addDetailsBtn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        #addReminderBtn {
+            background: #2196F3;
+            color: white;
+            padding: 8px 15px;
+            font-size: 14px;
+            width: auto;
+            min-width: 120px;
+        }
+        #addReminderBtn:hover {
+            background-color: #1976D2;
+        }
+        #captureBtn {
+            background-color: #27ae60;
+            color: white;
+        }
+        #captureBtn:hover {
+            background-color: #219a52;
+        }
+        #addDetailsBtn {
+            background-color: #3498db;
+            color: white;
+            display: none;
+        }
+        #addDetailsBtn:hover {
+            background-color: #2980b9;
+        }
+        .capture-controls {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        #captureBtn {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #captureBtn:hover {
+            background-color: #219a52;
+        }
+        #addDetailsBtn {
+            display: none;
+            background-color: #3498db;
+        }
+        .person-details-form {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 500px;
+        }
+        .person-details-form h3 {
+            margin-top: 0;
+        }
+        .form-row {
+            margin-bottom: 15px;
+        }
+        .form-row label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-row input, .form-row textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            width: 300px;  /* Fixed width for better visibility */
+        }
+        .toast {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            opacity: 1;
+            transition: opacity 0.5s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            width: 100%;  /* Take full width of container */
+        }
+        .toast-success {
+            background-color: #4CAF50;
+        }
+        .toast-error {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dementia Assistance System</h1>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="video-container">
+        <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+                <h2 id="detected-name">
+                    <span class="status-indicator status-offline"></span>
+                    Recognized Person: Unknown
+                </h2>
+                <button id="details-button" onclick="fetchDetails()" style="display: none;">More Details</button>
+            </div>
+
+            <!-- Chatbot Interface -->
+            <div id="chatbot-container">
+                <h3>
+                    <span class="status-indicator status-online"></span>
+                    Chat with Assistant
+                </h3>
+                <div id="chatbox"></div>
+                <div id="chat-input-container">
+                    <input type="text" id="userInput" placeholder="Ask something..." onkeypress="handleKeyPress(event)" autocomplete="off">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="reminders-header">
+                <h2>Today's Reminders</h2>
+                <button id="addReminderBtn" onclick="toggleReminderForm()">Add Reminder</button>
+            </div>
+            <div id="remindersContainer" class="reminders-container"></div>
+            <div id="reminderForm" class="add-reminder-form">
+                <h3>Add New Reminder</h3>
+                <div class="form-group">
+                    <label for="reminderTitle">Title</label>
+                    <input type="text" id="reminderTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="reminderDescription">Description</label>
+                    <textarea id="reminderDescription"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="reminderTime">Due Time</label>
+                    <input type="datetime-local" id="reminderTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="reminderCategory">Category</label>
+                    <input type="text" id="reminderCategory" placeholder="e.g., medication, appointment">
+                </div>
+                <div class="form-group">
+                    <button onclick="addReminder()">Save Reminder</button>
+                    <button onclick="toggleReminderForm()" style="background: #666;">Cancel</button>
+                </div>
+            </div>
+            
+            <div class="capture-section">
+                <h3>Person Recognition</h3>
+                <button id="captureBtn" onclick="capturePerson()">Capture the Person</button>
+                <button id="addDetailsBtn" onclick="showDetailsForm()">Add Details</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div id="details-box">
+        <button class="close-btn" onclick="closeDetails()">✕</button>
+        <h2 id="person-name"></h2>
+        <p id="person-relation"></p>
+        <p id="person-age"></p>
+        <p id="medical-history"></p>
+        <p id="last-visit"></p>
+        <p id="notes"></p>
+    </div>
+
+    <div id="notificationArea"></div>
+
+    <div id="personDetailsForm" class="person-details-form">
+        <h3>Add Person Details</h3>
+        <div class="form-row">
+            <label for="personName">Name:</label>
+            <input type="text" id="personName" required>
+        </div>
+        <div class="form-row">
+            <label for="personRelation">Relation:</label>
+            <input type="text" id="personRelation">
+        </div>
+        <div class="form-row">
+            <label for="personAge">Age:</label>
+            <input type="number" id="personAge">
+        </div>
+        <div class="form-row">
+            <label for="medicalHistory">Medical History:</label>
+            <textarea id="medicalHistory" rows="3"></textarea>
+        </div>
+        <div class="form-row">
+            <label for="lastVisit">Last Visit:</label>
+            <input type="date" id="lastVisit">
+        </div>
+        <div class="form-row">
+            <label for="additionalNotes">Additional Notes:</label>
+            <textarea id="additionalNotes" rows="3"></textarea>
+        </div>
+        <div class="form-buttons">
+            <button onclick="cancelDetailsForm()">Cancel</button>
+            <button onclick="savePersonDetails()" style="background-color: #27ae60;">Save</button>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        let detectedName = "Unknown";  // Store the latest detected name
+        const STATUS_CHECK_INTERVAL = 2000; // Check status every 2 seconds
+        let statusCheckTimer = null;
+        let isDiaryMode = false;
+
+        function updateDetectedName() {
+            fetch('/get_detected_name')
+            .then(response => response.json())
+            .then(data => {
+                if (data.name && data.name !== "Unknown") {
+                    detectedName = data.name;
+                    document.getElementById("detected-name").innerHTML = 
+                        '<span class="status-indicator status-online"></span>' +
+                        "Recognized Person: " + detectedName;
+                    document.getElementById("details-button").style.display = "block"; // Show the button
+                } else {
+                    detectedName = "Unknown";
+                    document.getElementById("detected-name").innerHTML = 
+                        '<span class="status-indicator status-offline"></span>' +
+                        "Recognized Person: Unknown";
+                    document.getElementById("details-button").style.display = "none"; // Hide the button
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching name:", error);
+                // Update indicator to show offline status
+                document.getElementById("detected-name").innerHTML = 
+                    '<span class="status-indicator status-offline"></span>' +
+                    "Recognized Person: Unknown";
+                document.getElementById("details-button").style.display = "none";
+            });
+        }
+
+        function fetchDetails() {
+            if (detectedName === "Unknown") {
+                alert("No recognized person found!");
+                return;
+            }
+
+            document.getElementById("overlay").style.display = "block";
+
+            fetch('/get_details', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: detectedName })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.error) {
+                    document.getElementById("person-name").innerText = data.Name || detectedName;
+                    document.getElementById("person-relation").innerText = "Relation: " + (data.Relation || "Unknown");
+                    document.getElementById("person-age").innerText = "Age: " + (data.Age || "Unknown");
+                    document.getElementById("medical-history").innerText = "Medical History: " + (data.Medical_History || "Unknown");
+                    document.getElementById("last-visit").innerText = "Last Visit: " + (data.Last_Visit || "Unknown");
+                    document.getElementById("notes").innerText = "Notes: " + (data.Notes || "No additional information available.");
+                    document.getElementById("details-box").style.display = "block"; // Show details box
+                } else {
+                    alert("No details found for this person.");
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching details:", error);
+                alert("Error fetching details. Please try again.");
+            });
+        }
+
+        function closeDetails() {
+            document.getElementById("details-box").style.display = "none"; // Hide details box
+            document.getElementById("overlay").style.display = "none"; // Hide overlay
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            let userInput = document.getElementById("userInput").value;
+            if (userInput.trim() === "") return;
+
+            let chatbox = document.getElementById("chatbox");
+            
+            // Check if this is a memory command
+            const isMemoryCommand = userInput.toLowerCase().match(/^(open memory|close memory|show memory)$/);
+            
+            // Add user message with appropriate styling
+            let userMessage = `<p class="${isMemoryCommand ? 'memory-message' : ''}"><b>You:</b> ${userInput}</p>`;
+            chatbox.innerHTML += userMessage;
+            
+            // Clear input
+            document.getElementById("userInput").value = "";
+            
+            // Show typing indicator for non-diary mode
+            if (!isDiaryMode && !isMemoryCommand) {
+                let typingIndicator = `<p id="typing-indicator"><b>Assistant:</b> Typing...</p>`;
+                chatbox.innerHTML += typingIndicator;
+            }
+            
+            chatbox.scrollTop = chatbox.scrollHeight;
+
+            fetch('/chatbot', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Remove typing indicator if it exists
+                const typingIndicator = document.getElementById("typing-indicator");
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+                
+                // Handle memory mode changes
+                if (userInput.toLowerCase() === "open memory") {
+                    isDiaryMode = true;
+                    document.getElementById("chatbox").classList.add("diary-mode");
+                } else if (userInput.toLowerCase() === "close memory") {
+                    isDiaryMode = false;
+                    document.getElementById("chatbox").classList.remove("diary-mode");
+                }
+                
+                // Display response with appropriate styling
+                let responseClass = '';
+                if (isMemoryCommand) {
+                    responseClass = 'memory-message';
+                } else if (isDiaryMode) {
+                    responseClass = 'diary-entry';
+                }
+                
+                let botMessage = `<p class="${responseClass}"><b>Assistant:</b> ${data.response}</p>`;
+                chatbox.innerHTML += botMessage;
+                chatbox.scrollTop = chatbox.scrollHeight;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                // Remove typing indicator if it exists
+                const typingIndicator = document.getElementById("typing-indicator");
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+                
+                // Show error message
+                let errorMessage = `<p style="color: red;"><b>Assistant:</b> Sorry, there was an error processing your request.</p>`;
+                chatbox.innerHTML += errorMessage;
+                chatbox.scrollTop = chatbox.scrollHeight;
+            });
+        }
+
+        // Add a welcome message when page loads
+        window.onload = function() {
+            let chatbox = document.getElementById("chatbox");
+            let welcomeMessage = `<p><b>Assistant:</b> Hello! I'm your personal assistant. How can I help you today?</p>`;
+            chatbox.innerHTML += welcomeMessage;
+            
+            // Start status checker
+            updateDetectedName();
+            statusCheckTimer = setInterval(updateDetectedName, STATUS_CHECK_INTERVAL);
+        };
+
+        // Cleanup on page unload
+        window.onbeforeunload = function() {
+            if (statusCheckTimer) {
+                clearInterval(statusCheckTimer);
+            }
+        };
+
+        // Close details box when clicking outside
+        document.getElementById("overlay").addEventListener("click", closeDetails);
+
+        // Reminder functionality
+        function loadReminders() {
+            fetch('/get_reminders')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('remindersContainer');
+                    container.innerHTML = '';
+                    
+                    // Sort reminders by due time
+                    const sortedReminders = data.reminders.sort((a, b) => {
+                        return new Date(a.due_time) - new Date(b.due_time);
+                    });
+                    
+                    sortedReminders.forEach(reminder => {
+                        const reminderElement = createReminderElement(reminder);
+                        container.appendChild(reminderElement);
+                    });
+                });
+        }
+
+        function createReminderElement(reminder) {
+            const div = document.createElement('div');
+            div.className = 'reminder-item';
+            if (isUrgent(reminder.due_time)) {
+                div.className += ' urgent';
+            }
+            
+            const title = document.createElement('div');
+            title.className = 'reminder-title';
+            title.textContent = reminder.title;
+            
+            const time = document.createElement('div');
+            time.className = 'reminder-time';
+            const dueTime = new Date(reminder.due_time);
+            time.textContent = dueTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            const description = document.createElement('div');
+            description.className = 'reminder-description';
+            description.textContent = reminder.description;
+            
+            const category = document.createElement('div');
+            category.className = 'reminder-category';
+            category.textContent = `Category: ${reminder.category}`;
+            
+            div.appendChild(title);
+            div.appendChild(time);
+            div.appendChild(description);
+            div.appendChild(category);
+            
+            return div;
+        }
+
+        function isUrgent(dueTime) {
+            const now = new Date();
+            const due = new Date(dueTime);
+            const diffMinutes = (due - now) / (1000 * 60);
+            return diffMinutes <= 30 && diffMinutes > 0;
+        }
+
+        function toggleReminderForm() {
+            const form = document.getElementById('reminderForm');
+            form.classList.toggle('show-form');
+            const btn = document.getElementById('addReminderBtn');
+            btn.textContent = form.classList.contains('show-form') ? 'Cancel' : 'Add Reminder';
+        }
+
+        function addReminder() {
+            const title = document.getElementById('reminderTitle').value;
+            const description = document.getElementById('reminderDescription').value;
+            const dueTime = document.getElementById('reminderTime').value;
+            const category = document.getElementById('reminderCategory').value;
+            
+            if (!title || !dueTime) {
+                alert('Title and due time are required!');
+                return;
+            }
+            
+            fetch('/add_reminder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: title,
+                    description: description,
+                    due_time: dueTime,
+                    category: category
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    showToast('Reminder added successfully!');
+                    loadReminders();
+                    // Clear form and hide it
+                    document.getElementById('reminderTitle').value = '';
+                    document.getElementById('reminderDescription').value = '';
+                    document.getElementById('reminderTime').value = '';
+                    document.getElementById('reminderCategory').value = '';
+                    toggleReminderForm();
+                }
+            });
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+
+            // Remove toast after 3 seconds
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    container.removeChild(toast);
+                }, 500);
+            }, 3000);
+        }
+
+        // Check for upcoming reminders every minute
+        function checkUpcomingReminders() {
+            fetch('/check_upcoming')
+                .then(response => response.json())
+                .then(data => {
+                    data.upcoming_reminders.forEach(reminder => {
+                        showToast(`Upcoming: ${reminder.title} at ${new Date(reminder.due_time).toLocaleTimeString()}`);
+                    });
+                });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadReminders();
+            // Check for upcoming reminders every minute
+            setInterval(checkUpcomingReminders, 60000);
+            // Reload reminders every 5 minutes
+            setInterval(loadReminders, 300000);
+        });
+
+        // Handle Enter key in chat input
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        let capturedImage = null;
+
+        function capturePerson() {
+            fetch('/capture_person', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    capturedImage = data.image_path;
+                    showToast('Person captured successfully!');
+                    document.getElementById('addDetailsBtn').style.display = 'inline-block';
+                } else {
+                    showToast('Failed to capture person. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('Error capturing person. Please try again.');
+            });
+        }
+
+        function showDetailsForm() {
+            document.getElementById('personDetailsForm').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function cancelDetailsForm() {
+            document.getElementById('personDetailsForm').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function savePersonDetails() {
+            const name = document.getElementById('personName').value.trim();
+            if (!name) {
+                showToast('Name is required!', 'error');
+                return;
+            }
+
+            if (!capturedImage) {
+                showToast('No image captured. Please capture an image first.', 'error');
+                return;
+            }
+
+            // Disable the save button and show loading state
+            const saveButton = document.querySelector('#personDetailsForm button[onclick="savePersonDetails()"]');
+            const originalButtonText = saveButton.textContent;
+            saveButton.disabled = true;
+            saveButton.textContent = 'Saving...';
+
+            const personData = {
+                image_path: capturedImage,
+                name: name,
+                relation: document.getElementById('personRelation').value.trim(),
+                age: document.getElementById('personAge').value.trim(),
+                medical_history: document.getElementById('medicalHistory').value.trim(),
+                notes: document.getElementById('additionalNotes').value.trim()
+            };
+
+            console.log('Sending data:', personData);
+
+            // Show loading notification
+            showToast('Saving person details...', 'info');
+
+            fetch('/add_person', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(personData)
+            })
+            .then(response => {
+                console.log('Response status:', response.status);  // Debug log
+                return response.json().then(data => {
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Failed to save person details');
+                    }
+                    return data;
+                });
+            })
+            .then(data => {
+                console.log('Success response:', data);  // Debug log
+                if (data.success) {
+                    showToast('Person details saved successfully!', 'success');
+                    cancelDetailsForm();
+                    document.getElementById('addDetailsBtn').style.display = 'none';
+                    // Reset form and captured image
+                    document.getElementById('personName').value = '';
+                    document.getElementById('personRelation').value = '';
+                    document.getElementById('personAge').value = '';
+                    document.getElementById('medicalHistory').value = '';
+                    document.getElementById('additionalNotes').value = '';
+                    capturedImage = null;
+                } else {
+                    throw new Error(data.error || 'Failed to save person details');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('Error saving details. Please try again.', 'error');
+            })
+            .finally(() => {
+                // Re-enable the save button and restore original text
+                saveButton.disabled = false;
+                saveButton.textContent = originalButtonText;
+            });
+        }
+
+        // Add this to ensure video feed is properly loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoFeed = document.getElementById('video-feed');
+            
+            // Reload video feed if it fails
+            videoFeed.onerror = function() {
+                setTimeout(() => {
+                    videoFeed.src = "{{ url_for('video_feed') }}";
+                }, 1000);
+            };
+        });
+    </script>
+</body>
+</html>
