@@ -1,0 +1,74 @@
+{
+    "Monday": [
+        {"time": "8:00 AM", "activity": "Morning Medication", "details": "Take diabetes pills with breakfast"},
+        {"time": "9:00 AM", "activity": "Breakfast", "details": "Low sugar, high protein breakfast"},
+        {"time": "12:00 PM", "activity": "Lunch", "details": "Light lunch with vegetables"},
+        {"time": "3:00 PM", "activity": "Afternoon Walk", "details": "30 minute walk in the garden"},
+        {"time": "4:00 PM", "activity": "Physical Therapy", "details": "Exercises for mobility and strength"},
+        {"time": "6:00 PM", "activity": "Evening Medication", "details": "Take blood pressure medication"},
+        {"time": "7:00 PM", "activity": "Dinner", "details": "Light dinner, avoid carbs"},
+        {"time": "9:00 PM", "activity": "Night Medication", "details": "Take sleeping pills if needed"}
+    ],
+    "Tuesday": [
+        {"time": "8:00 AM", "activity": "Morning Medication", "details": "Take diabetes pills with breakfast"},
+        {"time": "9:00 AM", "activity": "Breakfast", "details": "Low sugar, high protein breakfast"},
+        {"time": "10:30 AM", "activity": "Memory Game", "details": "Card matching and word association games"},
+        {"time": "12:00 PM", "activity": "Lunch", "details": "Light lunch with vegetables"},
+        {"time": "3:00 PM", "activity": "Afternoon Walk", "details": "30 minute walk in the garden"},
+        {"time": "6:00 PM", "activity": "Evening Medication", "details": "Take blood pressure medication"},
+        {"time": "7:00 PM", "activity": "Dinner", "details": "Light dinner, avoid carbs"},
+        {"time": "8:00 PM", "activity": "Family Call", "details": "Video call with Alice and grandchildren"},
+        {"time": "9:00 PM", "activity": "Night Medication", "details": "Take sleeping pills if needed"}
+    ],
+    "Wednesday": [
+        {"time": "8:00 AM", "activity": "Morning Medication", "details": "Take diabetes pills with breakfast"},
+        {"time": "9:00 AM", "activity": "Breakfast", "details": "Low sugar, high protein breakfast"},
+        {"time": "11:00 AM", "activity": "Doctor Appointment", "details": "Visit Dr. Smith at City Hospital for regular checkup"},
+        {"time": "12:30 PM", "activity": "Lunch", "details": "Light lunch with vegetables"},
+        {"time": "3:00 PM", "activity": "Afternoon Walk", "details": "30 minute walk in the garden"},
+        {"time": "5:00 PM", "activity": "Art Therapy", "details": "Painting session with therapist"},
+        {"time": "6:00 PM", "activity": "Evening Medication", "details": "Take blood pressure medication"},
+        {"time": "7:00 PM", "activity": "Dinner", "details": "Light dinner, avoid carbs"},
+        {"time": "9:00 PM", "activity": "Night Medication", "details": "Take sleeping pills if needed"}
+    ],
+    "Thursday": [
+        {"time": "8:00 AM", "activity": "Morning Medication", "details": "Take diabetes pills with breakfast"},
+        {"time": "9:00 AM", "activity": "Breakfast", "details": "Low sugar, high protein breakfast"},
+        {"time": "10:00 AM", "activity": "Grocery Shopping", "details": "Bob will take you shopping for essentials"},
+        {"time": "12:00 PM", "activity": "Lunch", "details": "Light lunch with vegetables"},
+        {"time": "2:00 PM", "activity": "Social Group", "details": "Memory support group at community center"},
+        {"time": "6:00 PM", "activity": "Evening Medication", "details": "Take blood pressure medication"},
+        {"time": "7:00 PM", "activity": "Dinner", "details": "Light dinner, avoid carbs"},
+        {"time": "9:00 PM", "activity": "Night Medication", "details": "Take sleeping pills if needed"}
+    ],
+    "Friday": [
+        {"time": "8:00 AM", "activity": "Morning Medication", "details": "Take diabetes pills with breakfast"},
+        {"time": "9:00 AM", "activity": "Breakfast", "details": "Low sugar, high protein breakfast"},
+        {"time": "12:00 PM", "activity": "Lunch", "details": "Light lunch with vegetables"},
+        {"time": "3:00 PM", "activity": "Afternoon Walk", "details": "30 minute walk in the garden"},
+        {"time": "4:00 PM", "activity": "Family Visit", "details": "Alice visits with grandchildren"},
+        {"time": "6:00 PM", "activity": "Evening Medication", "details": "Take blood pressure medication"},
+        {"time": "7:00 PM", "activity": "Dinner", "details": "Light dinner, avoid carbs"},
+        {"time": "9:00 PM", "activity": "Night Medication", "details": "Take sleeping pills if needed"}
+    ],
+    "Saturday": [
+        {"time": "8:00 AM", "activity": "Morning Medication", "details": "Take diabetes pills with breakfast"},
+        {"time": "9:00 AM", "activity": "Breakfast", "details": "Low sugar, high protein breakfast"},
+        {"time": "10:00 AM", "activity": "Gardening", "details": "Tend to potted plants on the patio"},
+        {"time": "12:00 PM", "activity": "Lunch", "details": "Light lunch with vegetables"},
+        {"time": "2:00 PM", "activity": "Movie Time", "details": "Watch an old favorite movie"},
+        {"time": "6:00 PM", "activity": "Evening Medication", "details": "Take blood pressure medication"},
+        {"time": "7:00 PM", "activity": "Dinner", "details": "Light dinner, avoid carbs"},
+        {"time": "9:00 PM", "activity": "Night Medication", "details": "Take sleeping pills if needed"}
+    ],
+    "Sunday": [
+        {"time": "8:00 AM", "activity": "Morning Medication", "details": "Take diabetes pills with breakfast"},
+        {"time": "9:00 AM", "activity": "Breakfast", "details": "Low sugar, high protein breakfast"},
+        {"time": "10:30 AM", "activity": "Family Brunch", "details": "Bob and Alice visiting for brunch"},
+        {"time": "1:00 PM", "activity": "Park Visit", "details": "Short walk in the local park if weather permits"},
+        {"time": "4:00 PM", "activity": "Reading Time", "details": "Reading session with favorite books"},
+        {"time": "6:00 PM", "activity": "Evening Medication", "details": "Take blood pressure medication"},
+        {"time": "7:00 PM", "activity": "Dinner", "details": "Light dinner, avoid carbs"},
+        {"time": "9:00 PM", "activity": "Night Medication", "details": "Take sleeping pills if needed"}
+    ]
+} 

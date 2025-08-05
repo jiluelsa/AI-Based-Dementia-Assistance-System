@@ -1,0 +1,69 @@
+{
+    "hi": "Good afternoon, John Doe! How can I assist you today?",
+    "tell me about myself": "Your name is John Doe. you are 25 years old. you have a medical history of Diabetes, Hypertension. your last doctor visit was on 2024-02-01. your next medication is scheduled at 8:00 AM. your family members are: Alice (mother), Bob (father).",
+    "ok who am i currently seeing": "Your name is John Doe. You are 25 years old. You have a medical history of Diabetes, Hypertension. Your last doctor visit was on 2024-02-01, and your next medication is scheduled at 8:00 AM. Your family members are: Alice (mother), Bob (father).",
+    "who is in front of camera": "You are currently seeing Jilu Elsa Jacob.",
+    "who am i seeing in camera now?": "Your name is John Doe. You are 25 years old. You have a medical history of Diabetes, Hypertension. Your last doctor visit was on 2024-02-01, and your next medication is scheduled at 8:00 AM. Your family members are: Alice (mother), Bob (father).",
+    "tell me about jilu elsa jacob": "Jilu Elsa Jacob is your Friend. They last visited you on 2025-03-10 11:55:45.",
+    "who is in front of the camera": "You are currently seeing Jilu Elsa Jacob.",
+    "who am i": "Your name is John Doe. You are 25 years old.",
+    "who am i seeing": "Your name is John Doe. You are 25 years old.",
+    "tell me who is infront of the camera": "You are currently seeing Jilu Elsa Jacob.",
+    "what do you know about him": "Good morning, John Doe! How can I assist you today?",
+    "what do you know about yadu": "I'm sorry, John Doe, I can't answer that question right now.",
+    "why you cant answer the question": "I don't have that information right now.",
+    "ok": "I don't have that information right now.",
+    "tell me about my routine on tuesday": "I don't have any information about My Routine On Tuesday.",
+    "but i think i have provided you that": "Good morning, John Doe! How can I assist you today?",
+    "your daily routine for today": "Your routine for today (Tuesday) is:\n- 8:00 AM: Morning Medication - Take diabetes pills with breakfast\n- 9:00 AM: Breakfast - Low sugar, high protein breakfast\n- 10:30 AM: Memory Game - Card matching and word association games\n- 12:00 PM: Lunch - Light lunch with vegetables\n- 3:00 PM: Afternoon Walk - 30 minute walk in the garden\n- 6:00 PM: Evening Medication - Take blood pressure medication\n- 7:00 PM: Dinner - Light dinner, avoid carbs\n- 8:00 PM: Family Call - Video call with Alice and grandchildren\n- 9:00 PM: Night Medication - Take sleeping pills if needed",
+    "tell me more about jilu": "Jilu Elsa Jacob is your Friend. They are 24 years old. You last saw them sees daily at college. close friend-studied together for PG at Saintgits College of Applied Sciences .",
+    "tell me more about jilu elsa jacob": "Jilu Elsa Jacob is your Friend. They are 24 years old. You last saw them sees daily at college. close friend-studied together for PG at Saintgits College of Applied Sciences .",
+    "general weekly routine overview": "Your weekly routine overview:\n- Monday: Afternoon Walk at 3:00 PM, Physical Therapy at 4:00 PM\n- Tuesday: Memory Game at 10:30 AM, Afternoon Walk at 3:00 PM, Family Call at 8:00 PM\n- Wednesday: Doctor Appointment at 11:00 AM, Afternoon Walk at 3:00 PM, Art Therapy at 5:00 PM\n- Thursday: Grocery Shopping at 10:00 AM, Social Group at 2:00 PM\n- Friday: Afternoon Walk at 3:00 PM, Family Visit at 4:00 PM\n- Saturday: Gardening at 10:00 AM, Movie Time at 2:00 PM\n- Sunday: Family Brunch at 10:30 AM, Park Visit at 1:00 PM, Reading Time at 4:00 PM\n",
+    "tell me more details of her": "I'm sorry, John Doe, I can't answer that question right now.",
+    "last_mentioned_person": "Jilu Elsa Jacob",
+    "tell me more about her": "I don't have any information about Her.",
+    "tell my daily routine": "Your weekly routine overview:\n- Monday: Afternoon Walk at 3:00 PM, Physical Therapy at 4:00 PM\n- Tuesday: Memory Game at 10:30 AM, Afternoon Walk at 3:00 PM, Family Call at 8:00 PM\n- Wednesday: Doctor Appointment at 11:00 AM, Afternoon Walk at 3:00 PM, Art Therapy at 5:00 PM\n- Thursday: Grocery Shopping at 10:00 AM, Social Group at 2:00 PM\n- Friday: Afternoon Walk at 3:00 PM, Family Visit at 4:00 PM\n- Saturday: Gardening at 10:00 AM, Movie Time at 2:00 PM\n- Sunday: Family Brunch at 10:30 AM, Park Visit at 1:00 PM, Reading Time at 4:00 PM\n",
+    "tell the time": "I'm not sure I understand. Could you rephrase that?",
+    "tell my name": "Let me find that out for you. Please ask again later.",
+    "who is infront of the camera": "You are currently seeing Jilu Elsa Jacob.",
+    "good morning": "I'm sorry, John Doe, I can't answer that question right now.",
+    "who are seeing in the camera": "I'm sorry, John Doe, I can't answer that question right now.",
+    "tell more about her": "Jilu Elsa Jacob is your Friend. They are 24 years old. You last saw them sees daily at college. close friend-studied together for PG at Saintgits College of Applied Sciences .",
+    "tell my daily routines": "Your weekly routine overview:\n- Monday: Afternoon Walk at 3:00 PM, Physical Therapy at 4:00 PM\n- Tuesday: Memory Game at 10:30 AM, Afternoon Walk at 3:00 PM, Family Call at 8:00 PM\n- Wednesday: Doctor Appointment at 11:00 AM, Afternoon Walk at 3:00 PM, Art Therapy at 5:00 PM\n- Thursday: Grocery Shopping at 10:00 AM, Social Group at 2:00 PM\n- Friday: Afternoon Walk at 3:00 PM, Family Visit at 4:00 PM\n- Saturday: Gardening at 10:00 AM, Movie Time at 2:00 PM\n- Sunday: Family Brunch at 10:30 AM, Park Visit at 1:00 PM, Reading Time at 4:00 PM\n",
+    "tell about mysellf": "I don't have that information right now.",
+    "who am i seeing in the camera now": "Your name is John Doe. You are 25 years old.",
+    "tell me about jilu": "Jilu Elsa Jacob is your Friend. They are 24 years old. You last saw them sees daily at college. close friend-studied together for PG at Saintgits College of Applied Sciences .",
+    "tell me about yadulal": "Yadulal Bhaskar is your Friend. They are 24 years old. You last saw them sees daily at college. close friend-studied together for PG at Saintgits College of Applied Sciences .",
+    "tell me who am i": "Your name is John Doe. You are 25 years old.",
+    "ok tell me more": "I'm having trouble processing your request. Please try again.",
+    "tell me more about myself": "I'm having trouble processing your request. Please try again.",
+    "who is in front of the camera?": "I'm having trouble processing your request. Please try again.",
+    "last_topic": "camera",
+    "is_recording": false,
+    "memories": [
+        {
+            "timestamp": "2025-03-13 14:22:08",
+            "content": [
+                "today i met a new person called den and he lives near our house and he works in the bank as a clerk .i really liked that man!"
+            ]
+        },
+        {
+            "timestamp": "2025-03-17 10:27:57",
+            "content": [
+                "hey today is a beautiful day!"
+            ]
+        },
+        "today was a special day.i loved it!",
+        "Assistant:  That's wonderful to hear! I'm glad you had a great day. Can you tell me more about what made it special for you?",
+        "2025-03-19 11:01:13: today i had a visitor named sheena .she is a good girl",
+        "2025-03-21 10:53:45: Hi",
+        "2025-03-28 09:01:50: what is my name",
+        "2025-03-29 12:01:25: tell my name",
+        "2025-03-29 12:06:29: today is saturday  and today i  went to saintgits college in the morning.",
+        "2025-03-29 12:06:40: it was a nice experience",
+        "2025-05-06 09:49:34: hi.today is may 6th,tuesday!today i saw my friends at college.",
+        "2025-05-06 09:49:50: it was so nice to meet them after years",
+        "2025-05-06 10:21:02: hi!",
+        "2025-05-06 11:43:32: helo"
+    ]
+}
